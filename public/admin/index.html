@@ -546,10 +546,10 @@ function renderKnowledge() {
               '<span class="kb-category">' + esc(e.category) + '</span>',
               '<span class="kb-title">' + esc(e.title) + '</span>',
             '</div>',
-            '<div class="kb-content">' + esc(e.content).substring(0, 200) + (e.content.length > 200 ? '...' : '') + '</div>',
+            '<div class="kb-content">' + esc(e.content) + '</div>',
             '<div class="kb-actions">',
-              '<button class="btn btn-sm btn-secondary" onclick="openEditEntry(' + JSON.stringify(e.id) + ')">✏️ Edit</button>',
-              '<button class="btn btn-sm btn-danger" onclick="confirmDeleteEntry(' + JSON.stringify(e.id) + ', ' + JSON.stringify(e.title) + ')">🗑️ Delete</button>',
+              '<button class="btn btn-sm btn-secondary" onclick="openEditEntry(\'' + e.id + '\')">✏️ Edit</button>',
+              '<button class="btn btn-sm btn-danger" onclick="confirmDeleteEntry(\'' + e.id + '\', \'' + e.title.replace(/'/g, "\\'") + '\')">🗑️ Delete</button>',
             '</div>',
           '</div>',
         ].join(''));
@@ -581,8 +581,11 @@ function openEditEntry(id) {
 }
 
 function kbForm(entry, isEdit) {
-  var categories = ['Company Info','Service Areas','Furnaces','Air Conditioning','Heat Pumps','Water Heaters','Gas Piping','Gas Fireplaces','Smart Thermostats','Ventilation','Maintenance','Commercial','Emergency Procedures'];
-  var catOptions = categories.map(function(c) {
+  var categories = ['About','Services','Furnaces','Air Conditioners','Water Heaters','Pricing','FAQ','Heat Pumps','Gas Piping','Gas Fireplaces','Smart Thermostats','Ventilation','Maintenance','Commercial','Emergency Procedures'];
+  var allCats = entry.category && categories.indexOf(entry.category) === -1
+    ? categories.concat([entry.category])
+    : categories;
+  var catOptions = allCats.map(function(c) {
     return '<option value="' + esc(c) + '"' + (entry.category === c ? ' selected' : '') + '>' + esc(c) + '</option>';
   }).join('');
   return [
