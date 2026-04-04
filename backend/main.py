@@ -6,9 +6,10 @@ from pathlib import Path
 from dotenv import load_dotenv
 load_dotenv(Path(__file__).parent.parent / ".env")
 
-from fastapi import FastAPI, Depends, HTTPException, status
+import traceback
+from fastapi import FastAPI, Depends, HTTPException, status, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import FileResponse, HTMLResponse
+from fastapi.responses import FileResponse, HTMLResponse, JSONResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
@@ -22,6 +23,10 @@ from chat import process_chat, get_instructions, DEFAULT_INSTRUCTIONS
 from knowledge_base import get_all_entries, create_entry, update_entry, delete_entry
 
 app = FastAPI(title="Gas Man Ottawa Chat API")
+
+@app.exception_handler(Exception)
+async def debug_exception_handler(request: Request, exc: Exception):
+    return JSONResponse(status_code=500, content={"error": str(exc), "trace": traceback.format_exc()})
 
 app.add_middleware(
     CORSMiddleware,
