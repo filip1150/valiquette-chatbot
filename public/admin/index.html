@@ -628,7 +628,7 @@ function kbForm(entry, isEdit) {
     '</div>',
     '<div class="modal-footer">',
       '<button class="btn btn-secondary" onclick="closeModal()">Cancel</button>',
-      '<button class="btn btn-primary" onclick="saveKBEntry(' + (isEdit ? JSON.stringify(entry.id) : 'null') + ')">',
+      '<button class="btn btn-primary" onclick="saveKBEntry(' + (isEdit ? ('\'' + entry.id + '\'') : 'null') + ')">',
         isEdit ? 'Save Changes' : 'Add Entry',
       '</button>',
     '</div>',
@@ -659,7 +659,7 @@ function confirmDeleteEntry(id, title) {
     '<p style="margin-bottom:24px">Are you sure you want to delete <strong>' + esc(title) + '</strong>? This will remove it from the knowledge base and Pinecone permanently.</p>',
     '<div class="modal-footer">',
       '<button class="btn btn-secondary" onclick="closeModal()">Cancel</button>',
-      '<button class="btn btn-danger" onclick="deleteEntry(' + JSON.stringify(id) + ')">Delete</button>',
+      '<button class="btn btn-danger" onclick="deleteEntry(\'' + id + '\')">Delete</button>',
     '</div>',
   ].join('');
   openModal();
@@ -733,7 +733,7 @@ function loadConversations(page) {
           '<td style="max-width:300px;font-size:13px">' + esc(c.preview || '(empty)') + '</td>',
           '<td>' + c.message_count + '</td>',
           '<td>' + (c.flagged ? '⭐' : '') + '</td>',
-          '<td><button class="btn btn-sm btn-secondary" onclick="viewConversation(' + JSON.stringify(c.id) + ')">View</button></td>',
+          '<td><button class="btn btn-sm btn-secondary" onclick="viewConversation(\'' + c.id + '\')">View</button></td>',
         '</tr>',
       ].join(''));
     });
@@ -763,7 +763,7 @@ function viewConversation(id) {
       '</div>',
       '<div class="conv-messages" style="max-height:400px;overflow-y:auto;padding:8px 0">' + (msgsHtml || '<p style="color:#6b7280">Empty conversation</p>') + '</div>',
       '<div class="modal-footer" style="margin-top:16px">',
-        '<button class="btn btn-secondary" onclick="toggleFlag(' + JSON.stringify(c.id) + ')">',
+        '<button class="btn btn-secondary" onclick="toggleFlag(\'' + c.id + '\')">',
           c.flagged ? '⭐ Unflag' : '☆ Flag',
         '</button>',
         '<button class="btn btn-secondary" onclick="closeModal()">Close</button>',
