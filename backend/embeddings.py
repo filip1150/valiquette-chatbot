@@ -42,6 +42,35 @@ def delete_vector(vector_id: str):
     index.delete(ids=[vector_id], namespace=namespace)
 
 
+INSTRUCTIONS_VECTOR_ID = "__gasman_instructions__"
+
+
+def save_instructions_to_pinecone(text: str):
+    """Persist AI instructions in Pinecone so they survive Vercel cold starts."""
+    index = get_pinecone_index()
+    namespace = os.environ.get("PINECONE_NAMESPACE", "gasman").strip()
+    # Use a zero vector -- we never query this by similarity, only fetch by ID
+    dim = 1536  # text-embedding-3-small dimension
+    index.upsert(
+        vectors=[{"id": INSTRUCTIONS_VECTOR_ID, "values": [0.0] * dim, "metadata": {"instructions": text, "_type": "instructions"}}],
+        namespace=namespace,
+    )
+
+
+def fetch_instructions_from_pinecone() -> str | None:
+    """Retrieve AI instructions stored in Pinecone. Returns None if not found."""
+    index = get_pinecone_index()
+    namespace = os.environ.get("PINECONE_NAMESPACE", "gasman").strip()
+    try:
+        result = index.fetch(ids=[INSTRUCTIONS_VECTOR_ID], namespace=namespace)
+        vec = result.vectors.get(INSTRUCTIONS_VECTOR_ID)
+        if vec and vec.metadata:
+            return vec.metadata.get("instructions")
+    except Exception:
+        pass
+    return None
+
+
 def list_all_vectors() -> list[dict]:
     """Fetch all vectors from Pinecone (used to resync SQLite on cold start)."""
     index = get_pinecone_index()
@@ -54,6 +83,8 @@ def list_all_vectors() -> list[dict]:
         results = []
         for vid, vec in fetched.vectors.items():
             m = vec.metadata or {}
+            if m.get("_type") == "instructions":
+                continue  # skip the instructions sentinel vector
             results.append({
                 "id": vid,
                 "category": m.get("category", ""),

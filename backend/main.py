@@ -20,6 +20,7 @@ from database import (
 )
 from chat import process_chat, get_instructions, DEFAULT_INSTRUCTIONS
 from knowledge_base import get_all_entries, create_entry, update_entry, delete_entry, sync_from_pinecone
+from embeddings import save_instructions_to_pinecone
 
 app = FastAPI(title="Gas Man Ottawa Chat API")
 
@@ -192,6 +193,7 @@ def update_ai_instructions(req: InstructionsUpdate, db: Session = Depends(get_db
         row = AIInstructions(instructions=req.instructions)
         db.add(row)
     db.commit()
+    save_instructions_to_pinecone(req.instructions)  # persist so cold starts restore correctly
     return {"ok": True, "updated_at": row.updated_at.isoformat()}
 
 

@@ -1,7 +1,7 @@
 import uuid
 from sqlalchemy.orm import Session
-from database import KnowledgeEntry
-from embeddings import embed_text, upsert_vector, delete_vector, list_all_vectors
+from database import KnowledgeEntry, AIInstructions
+from embeddings import embed_text, upsert_vector, delete_vector, list_all_vectors, save_instructions_to_pinecone, fetch_instructions_from_pinecone
 
 
 def sync_from_pinecone(db: Session, force: bool = False) -> int:
@@ -25,6 +25,14 @@ def sync_from_pinecone(db: Session, force: bool = False) -> int:
         )
         db.merge(entry)
     db.commit()
+
+    # Restore AI instructions from Pinecone if SQLite has none
+    if db.query(AIInstructions).count() == 0:
+        text = fetch_instructions_from_pinecone()
+        if text:
+            db.add(AIInstructions(instructions=text))
+            db.commit()
+
     return len(vectors)
 
 
