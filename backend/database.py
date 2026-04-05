@@ -8,9 +8,12 @@ import os as _os
 
 _db_url = _os.environ.get("POSTGRES_URL") or _os.environ.get("DATABASE_URL")
 if _db_url:
-    # Vercel Postgres / Neon — use pg8000 (pure Python, no native libs needed on Vercel)
+    import ssl as _ssl, re as _re
+    # Strip query string (sslmode etc) -- pg8000 handles SSL via connect_args
+    _db_url = _re.sub(r'\?.*$', '', _db_url)
     _db_url = _db_url.replace("postgres://", "postgresql+pg8000://").replace("postgresql://", "postgresql+pg8000://")
-    engine = create_engine(_db_url)
+    _ssl_ctx = _ssl.create_default_context()
+    engine = create_engine(_db_url, connect_args={"ssl_context": _ssl_ctx})
 else:
     _sqlite_path = "sqlite:////tmp/gasman.db" if _os.environ.get("VERCEL") else "sqlite:///./gasman.db"
     engine = create_engine(_sqlite_path, connect_args={"check_same_thread": False})
