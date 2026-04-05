@@ -87,14 +87,17 @@
 
   function toggleChat() {
     isOpen = !isOpen;
+    var isMobile = window.innerWidth <= 440;
     if (isOpen) {
       chatWindow.classList.add('gasman-open');
+      if (isMobile) bubble.classList.add('gasman-hidden');
       input.focus();
       if (messages.children.length === 0) {
         loadConfig();
       }
     } else {
       chatWindow.classList.remove('gasman-open');
+      bubble.classList.remove('gasman-hidden');
     }
   }
 

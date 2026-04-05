@@ -346,12 +346,16 @@
     left: 0;
     top: 0;
     border-radius: 0;
-    /* Push content below the browser chrome / notch */
     padding-top: env(safe-area-inset-top);
-    padding-bottom: env(safe-area-inset-bottom);
+  }
+  #gasman-input-area {
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
   }
   #gasman-chat-bubble {
     bottom: calc(16px + env(safe-area-inset-bottom));
     right: 16px;
+  }
+  #gasman-chat-bubble.gasman-hidden {
+    display: none !important;
   }
 }
