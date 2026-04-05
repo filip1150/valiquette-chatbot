@@ -49,10 +49,10 @@ def save_instructions_to_pinecone(text: str):
     """Persist AI instructions in Pinecone so they survive Vercel cold starts."""
     index = get_pinecone_index()
     namespace = os.environ.get("PINECONE_NAMESPACE", "gasman").strip()
-    # Use a zero vector -- we never query this by similarity, only fetch by ID
+    # Use a near-zero vector -- we never query this by similarity, only fetch by ID
     dim = 1536  # text-embedding-3-small dimension
     index.upsert(
-        vectors=[{"id": INSTRUCTIONS_VECTOR_ID, "values": [0.0] * dim, "metadata": {"instructions": text, "_type": "instructions"}}],
+        vectors=[{"id": INSTRUCTIONS_VECTOR_ID, "values": [0.0001] + [0.0] * (dim - 1), "metadata": {"instructions": text, "_type": "instructions"}}],
         namespace=namespace,
     )
 
