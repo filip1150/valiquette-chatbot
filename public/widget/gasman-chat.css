@@ -264,6 +264,36 @@
   color: #9ca3af;
 }
 
+#gasman-mic-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #f3f4f6;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s, transform 0.1s;
+}
+#gasman-mic-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: #6b7280;
+}
+#gasman-mic-btn.gasman-recording {
+  background: #fee2e2;
+  animation: gasman-mic-pulse 1s ease-in-out infinite;
+}
+#gasman-mic-btn.gasman-recording svg {
+  fill: #ef4444;
+}
+@keyframes gasman-mic-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
 #gasman-send-btn {
   width: 40px;
   height: 40px;

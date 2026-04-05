@@ -44,6 +44,9 @@
       '<div id="gasman-suggestions"></div>',
       '<div id="gasman-input-area">',
         '<textarea id="gasman-input" rows="1" placeholder="Ask about heating, cooling, or gas..."></textarea>',
+        '<button id="gasman-mic-btn" aria-label="Voice input" style="display:none">',
+          '<svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm-1 1.93c-3.94-.49-7-3.86-7-7.93H2c0 4.97 3.58 9.08 8 9.8V21h4v-3.27c4.42-.73 8-4.84 8-9.73h-2c0 4.07-3.06 7.44-7 7.93V15.93z"/></svg>',
+        '</button>',
         '<button id="gasman-send-btn" aria-label="Send message">',
           '<svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>',
         '</button>',
@@ -61,8 +64,56 @@
   var input = document.getElementById('gasman-input');
   var sendBtn = document.getElementById('gasman-send-btn');
 
+  var micBtn = document.getElementById('gasman-mic-btn');
   var isOpen = false;
   var isTyping = false;
+
+  // Speech recognition setup
+  var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  var recognition = null;
+  var isRecording = false;
+
+  if (SpeechRecognition) {
+    micBtn.style.display = 'flex';
+    recognition = new SpeechRecognition();
+    recognition.continuous = false;
+    recognition.interimResults = true;
+    recognition.lang = 'en-CA';
+
+    recognition.onstart = function() {
+      isRecording = true;
+      micBtn.classList.add('gasman-recording');
+      input.placeholder = 'Listening...';
+    };
+
+    recognition.onresult = function(e) {
+      var transcript = Array.from(e.results)
+        .map(function(r) { return r[0].transcript; })
+        .join('');
+      input.value = transcript;
+    };
+
+    recognition.onend = function() {
+      isRecording = false;
+      micBtn.classList.remove('gasman-recording');
+      input.placeholder = 'Ask about heating, cooling, or gas...';
+      if (input.value.trim()) sendMessage();
+    };
+
+    recognition.onerror = function() {
+      isRecording = false;
+      micBtn.classList.remove('gasman-recording');
+      input.placeholder = 'Ask about heating, cooling, or gas...';
+    };
+
+    micBtn.addEventListener('click', function() {
+      if (isRecording) {
+        recognition.stop();
+      } else {
+        recognition.start();
+      }
+    });
+  }
 
   var EMERGENCY_KEYWORDS = [
     'gas smell', 'smell gas', 'carbon monoxide', 'co detector', 'no heat',
