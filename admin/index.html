@@ -705,7 +705,10 @@ function loadConversations(page) {
           '<td style="max-width:300px;font-size:13px">' + esc(c.preview || '(empty)') + '</td>',
           '<td>' + c.message_count + '</td>',
           '<td>' + (c.flagged ? '⭐' : '') + '</td>',
-          '<td><button class="btn btn-sm btn-secondary" onclick="viewConversation(' + JSON.stringify(c.id) + ')">View</button></td>',
+          '<td style="white-space:nowrap">',
+            '<button class="btn btn-sm btn-secondary" style="margin-right:6px" onclick="viewConversation(' + JSON.stringify(c.id) + ')">View</button>',
+            '<button class="btn btn-sm btn-danger" onclick="confirmDeleteConversation(' + JSON.stringify(c.id) + ')">Delete</button>',
+          '</td>',
         '</tr>',
       ].join(''));
     });
@@ -749,6 +752,24 @@ function toggleFlag(id) {
   api('PUT', '/api/admin/conversations/' + id + '/flag')
     .then(function() { closeModal(); toast('Updated!', 'success'); loadConversations(currentPage.conversations); })
     .catch(function() { toast('Failed', 'error'); });
+}
+
+function confirmDeleteConversation(id) {
+  document.getElementById('modal-title').textContent = 'Delete Conversation?';
+  document.getElementById('modal-body').innerHTML = [
+    '<p style="margin-bottom:24px">Are you sure you want to permanently delete this conversation and all its messages? This cannot be undone.</p>',
+    '<div class="modal-footer">',
+      '<button class="btn btn-secondary" onclick="closeModal()">Cancel</button>',
+      '<button class="btn btn-danger" onclick="deleteConversation(' + JSON.stringify(id) + ')">Delete</button>',
+    '</div>',
+  ].join('');
+  openModal();
+}
+
+function deleteConversation(id) {
+  api('DELETE', '/api/admin/conversations/' + id)
+    .then(function() { closeModal(); toast('Conversation deleted', 'success'); loadConversations(currentPage.conversations); })
+    .catch(function() { toast('Failed to delete', 'error'); });
 }
 
 // ── Leads ─────────────────────────────────────────────────────────────────────

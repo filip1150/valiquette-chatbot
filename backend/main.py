@@ -249,6 +249,17 @@ def flag_conversation(conv_id: str, db: Session = Depends(get_db), _: str = Depe
     return {"flagged": conv.flagged}
 
 
+@app.delete("/api/admin/conversations/{conv_id}")
+def delete_conversation(conv_id: str, db: Session = Depends(get_db), _: str = Depends(require_admin)):
+    conv = db.query(Conversation).filter(Conversation.id == conv_id).first()
+    if not conv:
+        raise HTTPException(status_code=404, detail="Conversation not found")
+    db.query(Message).filter(Message.conversation_id == conv_id).delete()
+    db.delete(conv)
+    db.commit()
+    return {"ok": True}
+
+
 # ─── Admin — Leads ────────────────────────────────────────────────────────────
 
 class LeadCreate(BaseModel):
