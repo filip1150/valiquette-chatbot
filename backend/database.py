@@ -15,7 +15,7 @@ if _db_url:
     _ssl_ctx = _ssl.create_default_context()
     engine = create_engine(_db_url, connect_args={"ssl_context": _ssl_ctx})
 else:
-    _sqlite_path = "sqlite:////tmp/gasman.db" if _os.environ.get("VERCEL") else "sqlite:///./gasman.db"
+    _sqlite_path = "sqlite:////tmp/valiquette.db" if _os.environ.get("VERCEL") else "sqlite:///./valiquette.db"
     engine = create_engine(_sqlite_path, connect_args={"check_same_thread": False})
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
