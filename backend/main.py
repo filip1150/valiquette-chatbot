@@ -22,7 +22,7 @@ from chat import process_chat, get_instructions, DEFAULT_INSTRUCTIONS
 from knowledge_base import get_all_entries, create_entry, update_entry, delete_entry, sync_from_pinecone
 from embeddings import save_instructions_to_pinecone
 
-app = FastAPI(title="Gas Man Ottawa Chat API")
+app = FastAPI(title="Valiquette Mechanical Chat API")
 
 
 app.add_middleware(
@@ -34,7 +34,7 @@ app.add_middleware(
 )
 
 BASE_DIR = Path(__file__).parent.parent
-SECRET_KEY = os.environ.get("SECRET_KEY", "gasman-secret-change-me")
+SECRET_KEY = os.environ.get("SECRET_KEY", "valiquette-secret-change-me")
 ALGORITHM = "HS256"
 TOKEN_EXPIRE_HOURS = 24
 
@@ -74,7 +74,7 @@ def require_admin(credentials: HTTPAuthorizationCredentials = Depends(security))
 @app.post("/api/admin/login")
 def login(req: LoginRequest):
     admin_user = os.environ.get("ADMIN_USERNAME", "admin").strip()
-    admin_pass = os.environ.get("ADMIN_PASSWORD", "gasman2024").strip()
+    admin_pass = os.environ.get("ADMIN_PASSWORD", "valiquette2024").strip()
     if req.username != admin_user or req.password != admin_pass:
         raise HTTPException(status_code=401, detail="Invalid credentials")
     return {"token": create_token(req.username)}
@@ -96,7 +96,7 @@ def chat(req: ChatRequest, db: Session = Depends(get_db)):
 @app.get("/api/widget/config")
 def widget_config():
     return {
-        "greeting": "Hi! I'm the Gas Man Ottawa assistant. How can I help you today?",
+        "greeting": "Hi! I'm the Valiquette Mechanical assistant. How can I help you today?",
         "suggestions": [
             "I need a new furnace",
             "Emergency — no heat!",
@@ -104,8 +104,8 @@ def widget_config():
             "Do you service my area?",
         ],
         "theme": {
-            "primaryColor": "#E8531E",
-            "headerText": "Gas Man Assistant",
+            "primaryColor": "#1557A0",
+            "headerText": "Valiquette Mechanical",
             "subText": "Answers in seconds, 24/7",
         },
     }
@@ -377,7 +377,7 @@ def send_booking_email(req: BookingRequest):
     try:
         import resend as resend_lib
         resend_lib.api_key = resend_key.strip()
-        body = f"""NEW BOOKING REQUEST — Gas Man Ottawa Chatbot
+        body = f"""NEW BOOKING REQUEST — Valiquette Mechanical Chatbot
 
 Name:           {req.name}
 Phone:          {req.phone}
@@ -389,9 +389,9 @@ Conversation:   {req.conversation_id or '—'}
 Time:           {datetime.utcnow().isoformat()} UTC
 """
         params: resend_lib.Emails.SendParams = {
-            "from": os.environ.get("FEEDBACK_FROM", "Gas Man Ottawa <onboarding@resend.dev>"),
+            "from": os.environ.get("FEEDBACK_FROM", "Valiquette Mechanical <onboarding@resend.dev>"),
             "to": [to_email],
-            "subject": f"[Gas Man] New Booking Request — {req.name} — {req.phone}",
+            "subject": f"[Valiquette] New Booking Request — {req.name} — {req.phone}",
             "text": body,
         }
         resend_lib.Emails.send(params)
@@ -441,7 +441,7 @@ def index_page():
     if idx.exists():
         return str(idx)
     from fastapi.responses import JSONResponse
-    return JSONResponse({"status": "ok", "service": "Gas Man Ottawa Chat API"})
+    return JSONResponse({"status": "ok", "service": "Valiquette Mechanical Chat API"})
 
 
 @app.on_event("startup")

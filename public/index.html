@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gas Man Ottawa — HVAC, Furnaces, AC & Gas Services</title>
-<meta name="description" content="Ottawa's trusted HVAC contractor since 2004. Furnaces, air conditioning, heat pumps, water heaters, gas piping. Free estimates. TSSA Licensed.">
+<title>Valiquette Mechanical — HVAC, Furnaces, AC &amp; Gas Services Ottawa</title>
+<meta name="description" content="Ottawa's trusted HVAC contractor with 20+ years of experience. Furnaces, air conditioning, heat pumps, water heaters, gas piping, ductwork. Free estimates. Family-owned.">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   :root {
-    --orange: #E8531E;
-    --orange-dark: #c94518;
+    --blue: #1557A0;
+    --blue-dark: #0e3d7a;
     --black: #1a1a1a;
     --grey: #f8f8f8;
     --text: #333;
@@ -30,27 +30,27 @@
     box-shadow: 0 2px 12px rgba(0,0,0,0.3);
   }
   .logo { display: flex; align-items: center; gap: 12px; }
-  .logo-flame { font-size: 28px; }
+  .logo-icon { font-size: 28px; }
   .logo-text { color: white; }
-  .logo-text strong { display: block; font-size: 18px; font-weight: 800; color: var(--orange); letter-spacing: -0.3px; }
+  .logo-text strong { display: block; font-size: 18px; font-weight: 800; color: var(--blue); letter-spacing: -0.3px; }
   .logo-text span { font-size: 11px; opacity: 0.6; text-transform: uppercase; letter-spacing: 1px; }
   nav { display: flex; align-items: center; gap: 32px; }
   nav a { color: rgba(255,255,255,0.8); font-size: 14px; font-weight: 500; transition: color 0.15s; }
-  nav a:hover { color: var(--orange); }
+  nav a:hover { color: var(--blue); }
   .header-cta { display: flex; align-items: center; gap: 16px; }
   .phone-link { color: white; font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 6px; }
-  .phone-link:hover { color: var(--orange); }
+  .phone-link:hover { color: var(--blue); }
   .btn { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; border-radius: 6px; font-size: 14px; font-weight: 700; cursor: pointer; transition: background 0.15s, transform 0.1s; border: none; }
   .btn:active { transform: scale(0.97); }
-  .btn-orange { background: var(--orange); color: white; }
-  .btn-orange:hover { background: var(--orange-dark); }
+  .btn-blue { background: var(--blue); color: white; }
+  .btn-blue:hover { background: var(--blue-dark); }
   .btn-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.3); }
-  .btn-outline:hover { border-color: var(--orange); color: var(--orange); }
+  .btn-outline:hover { border-color: var(--blue); color: var(--blue); }
   .btn-lg { padding: 14px 32px; font-size: 16px; border-radius: 8px; }
 
   /* ── Hero ── */
   #hero {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d1f0e 60%, #3d2510 100%);
+    background: linear-gradient(135deg, #0d1b2a 0%, #1a2d4a 60%, #1557A0 100%);
     min-height: 600px;
     display: flex; align-items: center;
     padding: 80px 40px;
@@ -58,22 +58,22 @@
     overflow: hidden;
   }
   #hero::before {
-    content: '🔥';
+    content: '🔧';
     position: absolute;
     right: 8%;
     top: 50%;
     transform: translateY(-50%);
     font-size: 280px;
-    opacity: 0.06;
+    opacity: 0.05;
     user-select: none;
     pointer-events: none;
   }
   .hero-content { max-width: 640px; }
   .hero-badge {
     display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(232,83,30,0.15);
-    border: 1px solid rgba(232,83,30,0.3);
-    color: var(--orange);
+    background: rgba(21,87,160,0.25);
+    border: 1px solid rgba(21,87,160,0.5);
+    color: #7ab3e8;
     padding: 6px 14px; border-radius: 20px;
     font-size: 13px; font-weight: 600;
     margin-bottom: 24px;
@@ -87,7 +87,7 @@
     margin-bottom: 20px;
     letter-spacing: -1px;
   }
-  #hero h1 span { color: var(--orange); }
+  #hero h1 span { color: #7ab3e8; }
   #hero p {
     font-size: 18px;
     color: rgba(255,255,255,0.75);
@@ -96,9 +96,7 @@
     line-height: 1.7;
   }
   .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 40px; }
-  .hero-trust {
-    display: flex; gap: 32px; flex-wrap: wrap;
-  }
+  .hero-trust { display: flex; gap: 32px; flex-wrap: wrap; }
   .trust-item { display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.65); font-size: 13px; }
   .trust-item strong { color: white; }
 
@@ -106,7 +104,7 @@
   section { padding: 80px 40px; }
   .section-label {
     display: inline-block;
-    color: var(--orange);
+    color: var(--blue);
     font-size: 12px;
     font-weight: 800;
     text-transform: uppercase;
@@ -137,9 +135,7 @@
   .service-icon { font-size: 36px; margin-bottom: 16px; }
   .service-card h3 { font-size: 18px; font-weight: 800; color: var(--black); margin-bottom: 10px; }
   .service-card p { font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 16px; }
-  .service-price { font-size: 13px; font-weight: 700; color: var(--orange); }
-  .service-card a { color: var(--orange); font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
-  .service-card a:hover { text-decoration: underline; }
+  .service-price { font-size: 13px; font-weight: 700; color: var(--blue); }
 
   /* ── Why choose us ── */
   #why { background: white; }
@@ -152,7 +148,7 @@
   .why-item { text-align: center; padding: 24px 16px; }
   .why-icon {
     width: 64px; height: 64px;
-    background: linear-gradient(135deg, #fff3ee, #ffe4d6);
+    background: linear-gradient(135deg, #eff6ff, #dbeafe);
     border-radius: 50%;
     display: flex; align-items: center; justify-content: center;
     font-size: 28px;
@@ -163,7 +159,7 @@
 
   /* ── Estimate CTA banner ── */
   #estimate {
-    background: linear-gradient(135deg, var(--orange) 0%, var(--orange-dark) 100%);
+    background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
     padding: 64px 40px;
     text-align: center;
   }
@@ -171,7 +167,7 @@
   #estimate p { color: rgba(255,255,255,0.88); font-size: 18px; margin-bottom: 32px; }
   #estimate .btn-white {
     background: white;
-    color: var(--orange);
+    color: var(--blue);
     padding: 14px 36px;
     font-size: 16px;
     font-weight: 800;
@@ -210,9 +206,9 @@
   }
   .contact-item { text-align: center; }
   .contact-icon { font-size: 32px; margin-bottom: 12px; }
-  .contact-item h3 { color: var(--orange); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .contact-item h3 { color: var(--blue); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
   .contact-item p, .contact-item a { color: rgba(255,255,255,0.8); font-size: 15px; line-height: 1.6; }
-  .contact-item a:hover { color: var(--orange); }
+  .contact-item a:hover { color: #7ab3e8; }
   .contact-item .big { font-size: 22px; font-weight: 800; color: white; }
 
   /* ── Footer ── */
@@ -224,7 +220,7 @@
   }
   footer p { color: rgba(255,255,255,0.4); font-size: 13px; }
   footer a { color: rgba(255,255,255,0.4); font-size: 13px; }
-  footer a:hover { color: var(--orange); }
+  footer a:hover { color: #7ab3e8; }
 
   /* ── Hamburger (mobile nav) ── */
   .menu-toggle { display: none; background: none; border: none; cursor: pointer; color: white; padding: 4px; }
@@ -252,10 +248,10 @@
 <!-- Header -->
 <header>
   <div class="logo">
-    <span class="logo-flame">🔥</span>
+    <span class="logo-icon">🔧</span>
     <div class="logo-text">
-      <strong>Gas Man Ottawa</strong>
-      <span>Heating · Cooling · Gas</span>
+      <strong>Valiquette Mechanical</strong>
+      <span>Heating · Cooling · Gas · Ductwork</span>
     </div>
   </div>
   <nav id="main-nav">
@@ -265,8 +261,8 @@
     <a href="#contact">Contact</a>
   </nav>
   <div class="header-cta">
-    <a href="tel:6138803888" class="phone-link">📞 (613) 880-3888</a>
-    <a href="#contact" class="btn btn-orange">Free Estimate</a>
+    <a href="tel:6136201000" class="phone-link">📞 613-620-1000</a>
+    <a href="#contact" class="btn btn-blue">Free Estimate</a>
   </div>
   <button class="menu-toggle" onclick="document.getElementById('main-nav').classList.toggle('open')" aria-label="Menu">
     <svg viewBox="0 0 24 24" fill="white"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
@@ -276,18 +272,18 @@
 <!-- Hero -->
 <section id="hero">
   <div class="hero-content">
-    <div class="hero-badge">Ottawa's Trusted HVAC Experts Since 2004</div>
+    <div class="hero-badge">Ottawa's Trusted HVAC Experts — 20+ Years</div>
     <h1>Heating, Cooling &amp;<br><span>Gas Services</span><br>Done Right</h1>
-    <p>From new furnace installations to emergency no-heat calls, Gas Man Ottawa keeps your home comfortable year-round. TSSA Licensed. Fully Insured. Free Estimates.</p>
+    <p>From new furnace installations to emergency no-heat calls, Valiquette Mechanical keeps your home comfortable year-round. Family-owned and operated. Free Estimates.</p>
     <div class="hero-actions">
-      <a href="tel:6138803888" class="btn btn-orange btn-lg">📞 Call (613) 880-3888</a>
+      <a href="tel:6136201000" class="btn btn-blue btn-lg">📞 Call 613-620-1000</a>
       <a href="#services" class="btn btn-outline btn-lg">View Our Services</a>
     </div>
     <div class="hero-trust">
-      <div class="trust-item"><strong>✓</strong> TSSA Licensed</div>
-      <div class="trust-item"><strong>✓</strong> 1-Year Installation Guarantee</div>
+      <div class="trust-item"><strong>✓</strong> 20+ Years Experience</div>
+      <div class="trust-item"><strong>✓</strong> 100% Satisfaction Guarantee</div>
       <div class="trust-item"><strong>✓</strong> Free Estimates</div>
-      <div class="trust-item"><strong>✓</strong> Same-Day Emergency Service</div>
+      <div class="trust-item"><strong>✓</strong> Family-Owned &amp; Operated</div>
     </div>
   </div>
 </section>
@@ -297,43 +293,49 @@
   <div class="center">
     <span class="section-label">What We Do</span>
     <h2>Complete HVAC &amp; Gas Services</h2>
-    <p class="section-intro">We supply, install, and service all major brands. If it runs on gas or keeps your home comfortable, we do it.</p>
+    <p class="section-intro">We supply, install, and service all major brands. If it keeps your home comfortable, we do it.</p>
   </div>
   <div class="services-grid">
     <div class="service-card">
       <div class="service-icon">🌡️</div>
       <h3>Furnace Installation &amp; Repair</h3>
-      <p>High-efficiency furnaces from Rheem, Carrier, Goodman, Trane and more. Single-stage, two-stage, and modulating systems.</p>
+      <p>High-efficiency furnaces from Amana, Goodman, and more. Installation, repair, maintenance, and cleaning — single-stage, two-stage, and modulating systems.</p>
       <div class="service-price">From $3,500 installed · Free Estimate</div>
     </div>
     <div class="service-card">
       <div class="service-icon">❄️</div>
       <h3>Air Conditioning</h3>
-      <p>Central AC, ductless mini-splits, and heat pumps. Stay cool all summer with an energy-efficient system sized for your home.</p>
+      <p>Central AC, ductless mini-splits, and heat pumps. Installation, maintenance, repair, and cleaning. Stay cool all summer with a properly sized system.</p>
       <div class="service-price">From $3,800 installed · Free Estimate</div>
     </div>
     <div class="service-card">
       <div class="service-icon">♨️</div>
       <h3>Heat Pumps</h3>
-      <p>Cold-climate heat pumps that work down to -25°C. Heat in winter, cool in summer. Qualify for up to $7,500 in rebates.</p>
+      <p>Cold-climate heat pumps that work down to -25°C. Heat in winter, cool in summer. Qualify for up to $7,500 in government rebates.</p>
       <div class="service-price">From $5,500 installed · Up to $7,500 rebate</div>
     </div>
     <div class="service-card">
       <div class="service-icon">🚿</div>
-      <h3>Tankless Water Heaters</h3>
-      <p>Endless hot water on demand. Space-saving, energy-efficient. We size, supply, and install for your household's needs.</p>
-      <div class="service-price">Install &amp; supply available · Free Estimate</div>
+      <h3>Water Heaters</h3>
+      <p>Conventional tanks and tankless (on-demand) systems. Navien and other trusted brands. We size, supply, install, and repair for your household's needs.</p>
+      <div class="service-price">Installation &amp; supply available · Free Estimate</div>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">💨</div>
+      <h3>Ductwork</h3>
+      <p>Design, installation, repair, maintenance, and cleaning of custom ductwork systems. Proper ductwork means better comfort and lower energy bills.</p>
+      <div class="service-price">Free Estimate · Custom sizing</div>
     </div>
     <div class="service-card">
       <div class="service-icon">🔧</div>
       <h3>Gas Piping</h3>
-      <p>Schedule 40 black steel pipe only — the safest option. BBQ hookups, pool heaters, gas stoves, fireplaces, and more.</p>
+      <p>Installation, maintenance, repair, and removal of gas line systems. BBQ hookups, pool heaters, gas stoves, fireplaces, and more. Safe, code-compliant work.</p>
       <div class="service-price">BBQ lines from $200 · Free Estimate</div>
     </div>
     <div class="service-card">
       <div class="service-icon">🔥</div>
-      <h3>Gas Fireplaces</h3>
-      <p>Napoleon, Majestic, Regency, and more. Installation, service, and annual maintenance for all gas fireplace types.</p>
+      <h3>Gas &amp; Electric Fireplaces</h3>
+      <p>Napoleon, Majestic, Regency, and more. Installation, repair, and annual maintenance for all gas and electric fireplace types.</p>
       <div class="service-price">From $2,500 installed · Free Estimate</div>
     </div>
   </div>
@@ -342,30 +344,30 @@
 <!-- Why Choose Us -->
 <section id="why">
   <div class="center">
-    <span class="section-label">Why Gas Man Ottawa</span>
+    <span class="section-label">Why Valiquette Mechanical</span>
     <h2>We Do It Right or We Make It Right</h2>
-    <p class="section-intro">Founded in 2004 by Jeff, Gas Man Ottawa has built a reputation on honest work, fair prices, and standing behind every installation.</p>
+    <p class="section-intro">Founded by Eric Valiquette, our family business has built a reputation on honest work, fair prices, and standing behind every installation for over 20 years.</p>
   </div>
   <div class="why-grid">
     <div class="why-item">
+      <div class="why-icon">👨‍👩‍👧</div>
+      <h3>Family-Owned &amp; Operated</h3>
+      <p>Eric, Shanel, and Mat Valiquette run the business personally. You're not just a customer — you're treated like family.</p>
+    </div>
+    <div class="why-item">
       <div class="why-icon">🛡️</div>
-      <h3>TSSA Licensed &amp; Insured</h3>
-      <p>All work meets Ontario gas codes. Fully insured for your peace of mind.</p>
+      <h3>100% Satisfaction Guarantee</h3>
+      <p>A job done right on the first try, every time. We stand behind our work with a comprehensive satisfaction guarantee.</p>
     </div>
     <div class="why-item">
       <div class="why-icon">📋</div>
       <h3>1-Year Installation Guarantee</h3>
-      <p>If anything goes wrong due to our installation, we fix it free. Plus lifetime warranty on installation errors.</p>
-    </div>
-    <div class="why-item">
-      <div class="why-icon">🎁</div>
-      <h3>Authorized Warranty Service</h3>
-      <p>If equipment fails under manufacturer warranty, we bill the manufacturer — not you.</p>
+      <p>If anything goes wrong due to our installation, we fix it free. Plus warranty service for manufacturer-covered equipment.</p>
     </div>
     <div class="why-item">
       <div class="why-icon">⚡</div>
-      <h3>Same-Day Emergency Calls</h3>
-      <p>No heat in Ottawa winter? We prioritize emergency calls and get there fast.</p>
+      <h3>Emergency Service Available</h3>
+      <p>No heat in an Ottawa winter? We prioritize emergency calls and get there as fast as possible.</p>
     </div>
     <div class="why-item">
       <div class="why-icon">💰</div>
@@ -375,7 +377,7 @@
     <div class="why-item">
       <div class="why-icon">🇫🇷</div>
       <h3>English &amp; French Service</h3>
-      <p>Serving all of Ottawa in both official languages since 2004.</p>
+      <p>Serving all of Ottawa in both official languages for over 20 years.</p>
     </div>
   </div>
 </section>
@@ -384,7 +386,7 @@
 <section id="estimate">
   <h2>Ready for a Free Estimate?</h2>
   <p>Our technicians come to your home, assess your needs, and give you an honest quote — no pressure, no obligation.</p>
-  <a href="tel:6138803888" class="btn-white">📞 Call (613) 880-3888</a>
+  <a href="tel:6136201000" class="btn-white">📞 Call 613-620-1000</a>
   <p class="estimate-note">Or chat with our AI assistant below — available 24/7 →</p>
 </section>
 
@@ -394,6 +396,7 @@
   <h2>Serving Ottawa &amp; Surrounding Areas</h2>
   <p class="section-intro">We cover the entire Ottawa region. Not sure if we service your area? Just ask!</p>
   <div class="areas-list">
+    <span class="area-tag">Navan</span>
     <span class="area-tag">Orleans</span>
     <span class="area-tag">Kanata</span>
     <span class="area-tag">Barrhaven</span>
@@ -427,38 +430,38 @@
     <div class="contact-item">
       <div class="contact-icon">📞</div>
       <h3>Phone</h3>
-      <a href="tel:6138803888" class="big">(613) 880-3888</a>
-      <p style="margin-top:6px;font-size:13px">Emergency line — 24/7</p>
+      <a href="tel:6136201000" class="big">613-620-1000</a>
+      <p style="margin-top:6px;font-size:13px">Mon–Sat, 7:00 AM – 6:00 PM</p>
     </div>
     <div class="contact-item">
       <div class="contact-icon">✉️</div>
       <h3>Email</h3>
-      <a href="mailto:jeff@gasmanottawa.com">jeff@gasmanottawa.com</a>
+      <a href="mailto:office@valiquettemechanical.ca">office@valiquettemechanical.ca</a>
     </div>
     <div class="contact-item">
       <div class="contact-icon">📍</div>
       <h3>Address</h3>
-      <p>6770 Breanna Cardill St<br>Greely, ON K4P 0C3</p>
+      <p>6727 Du Palais St<br>Navan, ON K4B 1H9</p>
     </div>
     <div class="contact-item">
       <div class="contact-icon">🌐</div>
       <h3>Website</h3>
-      <a href="https://gasmanottawa.com" target="_blank" rel="noopener">gasmanottawa.com</a>
+      <a href="https://www.valiquettemechanical.ca" target="_blank" rel="noopener">valiquettemechanical.ca</a>
     </div>
   </div>
 </section>
 
 <!-- Footer -->
 <footer>
-  <p>© 2024 Gas Man Ottawa Inc. — TSSA Licensed · Fully Insured · Founded 2004</p>
+  <p>&copy; 2024 Valiquette Mechanical Inc. — Family-Owned · Ottawa HVAC · 20+ Years</p>
   <div style="display:flex;gap:20px">
     <a href="/admin">Admin</a>
-    <a href="tel:6138803888">(613) 880-3888</a>
+    <a href="tel:6136201000">613-620-1000</a>
   </div>
 </footer>
 
 <!-- Chat Widget -->
-<script src="/widget/gasman-chat.js"></script>
+<script src="/widget/valiquette-chat.js"></script>
 
 </body>
 </html>

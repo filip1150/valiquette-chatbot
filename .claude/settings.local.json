@@ -19,7 +19,28 @@
       "Bash(vercel inspect:*)",
       "Bash(vercel curl:*)",
       "Bash(curl -sv https://gasman-phi.vercel.app/api/widget/config)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m ':*)",
+      "Bash(git push:*)",
+      "Bash(vercel ls:*)",
+      "Bash(vercel --prod ls)",
+      "Bash(vercel domains:*)",
+      "Bash(vercel project:*)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(d['instructions']\\)\")",
+      "Bash(python3 -c ':*)",
+      "Bash(python3:*)",
+      "Bash(vercel storage:*)",
+      "Bash(vercel --version)",
+      "Bash(vercel help:*)",
+      "Bash(git commit:*)",
+      "Bash(npx vercel:*)",
+      "WebFetch(domain:www.valiquettemechanical.com)",
+      "WebFetch(domain:valiquettemechanical.com)",
+      "WebSearch",
+      "WebFetch(domain:www.valiquettemechanical.ca)",
+      "Bash(cp:*)",
+      "Bash(git remote:*)"
     ]
   }
 }

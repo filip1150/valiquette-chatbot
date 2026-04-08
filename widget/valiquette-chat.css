@@ -1,42 +1,42 @@
-/* Gas Man Ottawa Chat Widget */
-#gasman-chat-widget * {
+/* Valiquette Mechanical Chat Widget */
+#vm-chat-widget * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-#gasman-chat-bubble {
+#vm-chat-bubble {
   position: fixed;
   bottom: 24px;
   right: 24px;
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background: #E8531E;
+  background: #1557A0;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 20px rgba(232, 83, 30, 0.45);
+  box-shadow: 0 4px 20px rgba(21, 87, 160, 0.45);
   transition: transform 0.2s, box-shadow 0.2s;
   z-index: 9999;
   border: none;
   outline: none;
 }
 
-#gasman-chat-bubble:hover {
+#vm-chat-bubble:hover {
   transform: scale(1.08);
-  box-shadow: 0 6px 28px rgba(232, 83, 30, 0.55);
+  box-shadow: 0 6px 28px rgba(21, 87, 160, 0.55);
 }
 
-#gasman-chat-bubble svg {
+#vm-chat-bubble svg {
   width: 28px;
   height: 28px;
   fill: white;
 }
 
-#gasman-online-dot {
+#vm-online-dot {
   position: absolute;
   top: 2px;
   right: 2px;
@@ -45,15 +45,15 @@
   border-radius: 50%;
   background: #22c55e;
   border: 2px solid white;
-  animation: gasman-pulse 2s infinite;
+  animation: vm-pulse 2s infinite;
 }
 
-@keyframes gasman-pulse {
+@keyframes vm-pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.7; transform: scale(1.15); }
 }
 
-#gasman-chat-window {
+#vm-chat-window {
   position: fixed;
   bottom: 96px;
   right: 24px;
@@ -72,14 +72,14 @@
   transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.2s ease;
 }
 
-#gasman-chat-window.gasman-open {
+#vm-chat-window.vm-open {
   transform: scale(1) translateY(0);
   opacity: 1;
   pointer-events: all;
 }
 
-#gasman-chat-header {
-  background: linear-gradient(135deg, #E8531E 0%, #c94518 100%);
+#vm-chat-header {
+  background: linear-gradient(135deg, #1557A0 0%, #0e3d7a 100%);
   color: white;
   padding: 16px 20px;
   display: flex;
@@ -88,7 +88,7 @@
   flex-shrink: 0;
 }
 
-#gasman-chat-header .gasman-logo {
+#vm-chat-header .vm-logo {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -99,25 +99,25 @@
   flex-shrink: 0;
 }
 
-#gasman-chat-header .gasman-logo svg {
+#vm-chat-header .vm-logo svg {
   width: 22px;
   height: 22px;
   fill: white;
 }
 
-#gasman-chat-header .gasman-header-text h3 {
+#vm-chat-header .vm-header-text h3 {
   font-size: 15px;
   font-weight: 700;
   line-height: 1.2;
 }
 
-#gasman-chat-header .gasman-header-text p {
+#vm-chat-header .vm-header-text p {
   font-size: 12px;
   opacity: 0.85;
   margin-top: 2px;
 }
 
-#gasman-close-btn {
+#vm-close-btn {
   margin-left: auto;
   background: none;
   border: none;
@@ -130,9 +130,9 @@
   transition: opacity 0.15s;
 }
 
-#gasman-close-btn:hover { opacity: 1; }
+#vm-close-btn:hover { opacity: 1; }
 
-#gasman-messages {
+#vm-messages {
   flex: 1;
   overflow-y: auto;
   padding: 16px;
@@ -142,45 +142,45 @@
   scroll-behavior: smooth;
 }
 
-#gasman-messages::-webkit-scrollbar { width: 4px; }
-#gasman-messages::-webkit-scrollbar-track { background: transparent; }
-#gasman-messages::-webkit-scrollbar-thumb { background: #ddd; border-radius: 4px; }
+#vm-messages::-webkit-scrollbar { width: 4px; }
+#vm-messages::-webkit-scrollbar-track { background: transparent; }
+#vm-messages::-webkit-scrollbar-thumb { background: #ddd; border-radius: 4px; }
 
-.gasman-msg {
+.vm-msg {
   max-width: 85%;
   padding: 10px 14px;
   border-radius: 16px;
   font-size: 14px;
   line-height: 1.5;
-  animation: gasman-msg-in 0.2s ease;
+  animation: vm-msg-in 0.2s ease;
 }
 
-@keyframes gasman-msg-in {
+@keyframes vm-msg-in {
   from { opacity: 0; transform: translateY(6px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.gasman-msg.gasman-bot {
+.vm-msg.vm-bot {
   background: #f4f4f5;
   color: #1a1a1a;
   border-bottom-left-radius: 4px;
   align-self: flex-start;
 }
 
-.gasman-msg.gasman-user {
-  background: #E8531E;
+.vm-msg.vm-user {
+  background: #1557A0;
   color: white;
   border-bottom-right-radius: 4px;
   align-self: flex-end;
 }
 
-.gasman-msg.gasman-emergency {
+.vm-msg.vm-emergency {
   background: #fee2e2;
   border: 1.5px solid #f87171;
   color: #991b1b;
 }
 
-.gasman-typing {
+.vm-typing {
   background: #f4f4f5;
   border-radius: 16px;
   border-bottom-left-radius: 4px;
@@ -191,23 +191,23 @@
   align-items: center;
 }
 
-.gasman-typing span {
+.vm-typing span {
   width: 7px;
   height: 7px;
   border-radius: 50%;
   background: #aaa;
-  animation: gasman-bounce 1.2s infinite;
+  animation: vm-bounce 1.2s infinite;
 }
 
-.gasman-typing span:nth-child(2) { animation-delay: 0.2s; }
-.gasman-typing span:nth-child(3) { animation-delay: 0.4s; }
+.vm-typing span:nth-child(2) { animation-delay: 0.2s; }
+.vm-typing span:nth-child(3) { animation-delay: 0.4s; }
 
-@keyframes gasman-bounce {
+@keyframes vm-bounce {
   0%, 60%, 100% { transform: translateY(0); }
   30% { transform: translateY(-6px); }
 }
 
-#gasman-suggestions {
+#vm-suggestions {
   padding: 0 12px 12px;
   display: flex;
   flex-wrap: wrap;
@@ -215,10 +215,10 @@
   flex-shrink: 0;
 }
 
-.gasman-suggestion-btn {
+.vm-suggestion-btn {
   background: white;
-  border: 1.5px solid #E8531E;
-  color: #E8531E;
+  border: 1.5px solid #1557A0;
+  color: #1557A0;
   border-radius: 20px;
   padding: 7px 14px;
   font-size: 13px;
@@ -227,12 +227,12 @@
   white-space: nowrap;
 }
 
-.gasman-suggestion-btn:hover {
-  background: #E8531E;
+.vm-suggestion-btn:hover {
+  background: #1557A0;
   color: white;
 }
 
-#gasman-input-area {
+#vm-input-area {
   border-top: 1px solid #e5e7eb;
   padding: 12px 16px;
   display: flex;
@@ -241,7 +241,7 @@
   flex-shrink: 0;
 }
 
-#gasman-input {
+#vm-input {
   flex: 1;
   border: 1.5px solid #e5e7eb;
   border-radius: 24px;
@@ -256,19 +256,49 @@
   line-height: 1.4;
 }
 
-#gasman-input:focus {
-  border-color: #E8531E;
+#vm-input:focus {
+  border-color: #1557A0;
 }
 
-#gasman-input::placeholder {
+#vm-input::placeholder {
   color: #9ca3af;
 }
 
-#gasman-send-btn {
+#vm-mic-btn {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: #E8531E;
+  background: #f3f4f6;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.15s, transform 0.1s;
+}
+#vm-mic-btn svg {
+  width: 20px;
+  height: 20px;
+  fill: #6b7280;
+}
+#vm-mic-btn.vm-recording {
+  background: #fee2e2;
+  animation: vm-mic-pulse 1s ease-in-out infinite;
+}
+#vm-mic-btn.vm-recording svg {
+  fill: #ef4444;
+}
+@keyframes vm-mic-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+#vm-send-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #1557A0;
   border: none;
   cursor: pointer;
   display: flex;
@@ -278,24 +308,84 @@
   transition: background 0.15s, transform 0.1s;
 }
 
-#gasman-send-btn:hover { background: #c94518; }
-#gasman-send-btn:active { transform: scale(0.93); }
-#gasman-send-btn:disabled { background: #d1d5db; cursor: not-allowed; }
+#vm-send-btn:hover { background: #0e3d7a; }
+#vm-send-btn:active { transform: scale(0.93); }
+#vm-send-btn:disabled { background: #d1d5db; cursor: not-allowed; }
 
-#gasman-send-btn svg {
+#vm-send-btn svg {
   width: 18px;
   height: 18px;
   fill: white;
   margin-left: 2px;
 }
 
+/* Booking form inside chat */
+.vm-form-msg {
+  width: 100% !important;
+  max-width: 100% !important;
+  background: white !important;
+  border: 1.5px solid #e5e7eb !important;
+  border-radius: 12px !important;
+  padding: 16px !important;
+}
+.vm-form-title {
+  font-weight: 700;
+  font-size: 14px;
+  margin-bottom: 12px;
+  color: #1a1a1a;
+}
+.vm-form-row {
+  margin-bottom: 8px;
+}
+.vm-form-row input {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1.5px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 13px;
+  outline: none;
+  transition: border-color 0.15s;
+  color: #1a1a1a;
+  font-family: inherit;
+}
+.vm-form-row input:focus { border-color: #1557A0; }
+.vm-form-submit {
+  width: 100%;
+  background: #1557A0;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: background 0.15s;
+}
+.vm-form-submit:hover { background: #0e3d7a; }
+.vm-form-submit:disabled { background: #d1d5db; cursor: not-allowed; }
+
 /* Mobile */
 @media (max-width: 440px) {
-  #gasman-chat-window {
-    width: calc(100vw - 16px);
-    height: calc(100vh - 100px);
-    right: 8px;
-    bottom: 80px;
-    border-radius: 12px;
+  #vm-chat-window {
+    width: 100vw;
+    height: 100%;
+    max-height: 100%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    top: 0;
+    border-radius: 0;
+    padding-top: env(safe-area-inset-top);
+  }
+  #vm-input-area {
+    padding-bottom: calc(12px + env(safe-area-inset-bottom));
+  }
+  #vm-chat-bubble {
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    right: 16px;
+  }
+  #vm-chat-bubble.vm-hidden {
+    display: none !important;
   }
 }
