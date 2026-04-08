@@ -15,16 +15,31 @@
   link.href = API_BASE + '/widget/valiquette-chat.css';
   document.head.appendChild(link);
 
+  // Greeting tooltip
+  var tooltip = document.createElement('div');
+  tooltip.id = 'vm-greeting-tooltip';
+  tooltip.style.display = 'none';
+  tooltip.innerHTML = [
+    '<button id="vm-tooltip-close" aria-label="Close">\u00d7</button>',
+    '<div id="vm-tooltip-avatar">\ud83d\udd27</div>',
+    '<p>Hi there! \ud83d\udc4b Have a question about <strong>heating, cooling, or gas</strong>? We\'re here to help!</p>',
+    '<button id="vm-tooltip-cta">Chat with us \u2192</button>',
+  ].join('');
+  document.body.appendChild(tooltip);
+
   // Build HTML
   var wrapper = document.createElement('div');
   wrapper.id = 'vm-chat-widget';
   wrapper.innerHTML = [
-    '<button id="vm-chat-bubble" aria-label="Open Valiquette Mechanical chat">',
-      '<div id="vm-online-dot"></div>',
-      '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">',
-        '<path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26A7.002 7.002 0 0 0 19 9c0-3.87-3.13-7-7-7zm1 14h-2v-1.08C8.48 14.41 7 11.86 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 2.86-1.48 5.41-4 5.92V16zm-1 4c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2z"/>',
-      '</svg>',
-    '</button>',
+    '<div id="vm-bubble-wrap">',
+      '<button id="vm-chat-bubble" aria-label="Open Valiquette Mechanical chat">',
+        '<div id="vm-online-dot"></div>',
+        '<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">',
+          '<path d="M12 2C8.13 2 5 5.13 5 9c0 2.38 1.19 4.47 3 5.74V17c0 .55.45 1 1 1h6c.55 0 1-.45 1-1v-2.26A7.002 7.002 0 0 0 19 9c0-3.87-3.13-7-7-7zm1 14h-2v-1.08C8.48 14.41 7 11.86 7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 2.86-1.48 5.41-4 5.92V16zm-1 4c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2z"/>',
+        '</svg>',
+      '</button>',
+      '<button id="vm-chat-label">💬 Chat with us</button>',
+    '</div>',
     '<div id="vm-chat-window" role="dialog" aria-label="Valiquette Mechanical chat">',
       '<div id="vm-chat-header">',
         '<div class="vm-logo">',
@@ -57,6 +72,8 @@
   document.body.appendChild(wrapper);
 
   var bubble = document.getElementById('vm-chat-bubble');
+  var bubbleWrap = document.getElementById('vm-bubble-wrap');
+  var chatLabel = document.getElementById('vm-chat-label');
   var chatWindow = document.getElementById('vm-chat-window');
   var closeBtn = document.getElementById('vm-close-btn');
   var messages = document.getElementById('vm-messages');
@@ -67,6 +84,32 @@
   var micBtn = document.getElementById('vm-mic-btn');
   var isOpen = false;
   var isTyping = false;
+
+  // Greeting tooltip logic
+  var tooltipDismissed = false;
+  var tooltipTimer = setTimeout(function() {
+    if (!isOpen && !tooltipDismissed) {
+      tooltip.style.display = 'block';
+      // Auto-hide after 10s
+      setTimeout(function() { dismissTooltip(); }, 10000);
+    }
+  }, 3500);
+
+  function dismissTooltip() {
+    tooltipDismissed = true;
+    tooltip.classList.add('vm-tooltip-out');
+    setTimeout(function() { tooltip.style.display = 'none'; tooltip.classList.remove('vm-tooltip-out'); }, 200);
+  }
+
+  document.getElementById('vm-tooltip-close').addEventListener('click', function(e) {
+    e.stopPropagation();
+    dismissTooltip();
+  });
+  document.getElementById('vm-tooltip-cta').addEventListener('click', function() {
+    dismissTooltip();
+    toggleChat();
+  });
+  chatLabel.addEventListener('click', toggleChat);
 
   // Speech recognition setup
   var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -139,16 +182,21 @@
   function toggleChat() {
     isOpen = !isOpen;
     var isMobile = window.innerWidth <= 440;
+    dismissTooltip();
     if (isOpen) {
       chatWindow.classList.add('vm-open');
-      if (isMobile) bubble.classList.add('vm-hidden');
+      bubble.classList.add('vm-is-open');
+      chatLabel.classList.add('vm-hidden');
+      if (isMobile) bubbleWrap.classList.add('vm-hidden');
       input.focus();
       if (messages.children.length === 0) {
         loadConfig();
       }
     } else {
       chatWindow.classList.remove('vm-open');
-      bubble.classList.remove('vm-hidden');
+      bubble.classList.remove('vm-is-open');
+      chatLabel.classList.remove('vm-hidden');
+      bubbleWrap.classList.remove('vm-hidden');
     }
   }
 
